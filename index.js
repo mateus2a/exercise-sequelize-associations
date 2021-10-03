@@ -1,7 +1,7 @@
 const bodyParser = require('body-parser');
 
 const express = require('express');
-const { Patient, Plan } = require('./models');
+const { Patient, Plan, PatientSurgery } = require('./models');
 const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,6 +16,16 @@ app.get('/patients/plans', async (req, res) => {
     return res.json(patients);
   } catch (error) {
     console.log(e.message);
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
+});
+
+app.get('/patients/surgeries', async (req, res) => {
+  try {
+    const patients = await PatientSurgery.findAll();
+    return res.json(patients);
+  } catch (error) {
+    console.log(erro);
     res.status(500).json({ message: 'Ocorreu um erro' });
   }
 });
