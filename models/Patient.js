@@ -10,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
       fullname: DataTypes.STRING,
       plan_id: { type: DataTypes.INTEGER, foreignKey: true },
     },
-    { timestamps: false, tableName: 'Patients', underscored: true }
+    {
+      timestamps: false,
+      tableName: 'Patients',
+      underscored: true,
+    }
   );
   return Patient;
 };
