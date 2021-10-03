@@ -8,11 +8,16 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 const PORT = 3000;
 
-app.get('/patients', async (req, res) => {
+app.get('/patients/plans', async (req, res) => {
   try {
-    const patients = await Patient.findAll();
+    const patients = await Patient.findAll({
+      include: { model: Plan, as: 'plans' },
+    });
     return res.json(patients);
-  } catch (error) {}
+  } catch (error) {
+    console.log(e.message);
+    res.status(500).json({ message: 'Ocorreu um erro' });
+  }
 });
 
 app.listen(PORT, () => {
