@@ -16,5 +16,13 @@ module.exports = (sequelize, DataTypes) => {
       underscored: true,
     }
   );
+
+  Patient.associate = (models) => {
+    Patient.belongsTo(models.Plan, {
+      foreignKey: 'plan_id',
+      as: 'plans',
+    });
+  };
+
   return Patient;
 };

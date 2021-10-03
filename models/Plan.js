@@ -12,5 +12,11 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false, tableName: 'Plans', underscored: true }
   );
+  Plan.associate = (models) => {
+    Plan.hasMany(models.Patient, {
+      foreignKey: 'plan_id',
+      as: 'patients',
+    });
+  };
   return Plan;
 };

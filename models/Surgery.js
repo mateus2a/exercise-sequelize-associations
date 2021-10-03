@@ -12,5 +12,6 @@ module.exports = (sequelize, DataTypes) => {
     },
     { timestamps: false, tableName: 'Surgerys', underscored: true }
   );
+
   return Surgery;
 };
